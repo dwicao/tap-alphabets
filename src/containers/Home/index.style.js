@@ -11,6 +11,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   title: {
+    color: 'black',
     marginTop: height(5),
     fontSize: totalSize(5),
     fontWeight: 'bold',
