@@ -11,12 +11,23 @@ import { width } from 'react-native-dimension';
 import styles from './index.style';
 import Wall from '@src/components/Wall';
 import Tile from '@src/components/Tile';
+import { getRandomTileColor } from '@src/utils/board';
 
 class Home extends Component {
   constructor() {
     super();
 
+    this.state = {
+      tileColor: getRandomTileColor(),
+    }
+
     this.pressStart = this.pressStart.bind(this);
+    this.pressTopTile = this.pressTopTile.bind(this);
+  }
+
+  pressTopTile() {
+    const { tileColor } = this.state;
+    this.setState({ tileColor: getRandomTileColor([tileColor]) });
   }
 
   pressStart() {
@@ -24,16 +35,26 @@ class Home extends Component {
   }
 
   render() {
+    const { tileColor } = this.state;
+
     return (
       <Wall>
         <View style={styles.section}>
           <View style={styles.sectionTop}>
-            <Tile text='A'/>
+            <Tile
+              text='A'
+              color={tileColor}
+              onPress={this.pressTopTile}
+            />
             <Text style={styles.title}>
               Tap Alphabets
             </Text>
           </View>
-          <Tile text='START' width={width(50)} onPress={this.pressStart}/>
+          <Tile
+            text='START'
+            width={width(50)}
+            onPress={this.pressStart}
+          />
         </View>
       </Wall>
     );

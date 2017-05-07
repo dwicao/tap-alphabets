@@ -6,6 +6,7 @@ import {
   Animated,
 } from 'react-native';
 import styles from './index.style';
+import shadeColor from '@src/utils/colors';
 import { width } from 'react-native-dimension';
 
 class Tile extends Component {
@@ -26,11 +27,10 @@ class Tile extends Component {
     
     setTimeout(() => {
       this.animationHelper(this.animPress, 0, 50);
+      this.props.onPress();
     }, 100);
 
     this.setState({ isClicked: true });
-
-    this.props.onPress();
   }
 
   animationHelper(obj, toValue, duration) {
@@ -55,12 +55,16 @@ class Tile extends Component {
         activeOpacity={1}
         style={[styles.container, { width: this.props.width }]}
       >
-        <View style={[styles.size, styles.primary, { width: this.props.width }]}/>
+        <View style={[styles.size, styles.primary, {
+          width: this.props.width, backgroundColor: shadeColor(this.props.color, -20)
+        }]}/>
         <Animated.View
           style={[
-            styles.size, styles.secondary, { width: this.props.width, top: animPress }
-          ]}
-        >
+            styles.size, styles.secondary, {
+              top: animPress,
+              backgroundColor: shadeColor(this.props.color),
+              width: this.props.width,
+        }]}>
           <Text style={styles.alphabet}>
             {this.props.text}
           </Text>
@@ -73,11 +77,13 @@ class Tile extends Component {
 Tile.defaultProps = {
   width: width(25),
   onPress: () => {},
+  color: '#aaaaaa',
 };
 
 Tile.propTypes = {
   width: PropTypes.number,
   onPress: PropTypes.func,
+  color: PropTypes.string,
   text: PropTypes.string.isRequired,
 };
 
