@@ -3,6 +3,10 @@ import { width, totalSize } from 'react-native-dimension';
 import shadeColor from '@src/utils/colors';
 
 export default StyleSheet.create({
+  container: {
+    width: width(25),
+    height: width(27),
+  },
   size: {
     height: width(25),
     borderRadius: width(2),

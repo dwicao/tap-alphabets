@@ -5,11 +5,14 @@ export default StyleSheet.create({
   section: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+  },
+  sectionTop: {
+    alignItems: 'center',
   },
   title: {
-    marginTop: height(4),
-    fontSize: totalSize(4),
+    marginTop: height(5),
+    fontSize: totalSize(5),
     fontWeight: 'bold',
     backgroundColor: 'transparent',
   },

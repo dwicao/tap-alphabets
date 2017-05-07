@@ -53,7 +53,7 @@ class Tile extends Component {
       <TouchableOpacity
         onPress={this.handleClick}
         activeOpacity={1}
-        style={[styles.size, { width: this.props.width }]}
+        style={[styles.container, { width: this.props.width }]}
       >
         <View style={[styles.size, styles.primary, { width: this.props.width }]}/>
         <Animated.View

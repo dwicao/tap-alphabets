@@ -27,12 +27,12 @@ class Home extends Component {
     return (
       <Wall>
         <View style={styles.section}>
-          <Tile text='A'/>
-          <Text style={styles.title}>
-            Tap Alphabets
-          </Text>
-        </View>
-        <View style={styles.section}>
+          <View style={styles.sectionTop}>
+            <Tile text='A'/>
+            <Text style={styles.title}>
+              Tap Alphabets
+            </Text>
+          </View>
           <Tile text='START' width={width(50)} onPress={this.pressStart}/>
         </View>
       </Wall>
