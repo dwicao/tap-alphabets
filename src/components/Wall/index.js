@@ -7,7 +7,7 @@ class Wall extends Component {
   render() {
     return (
       <Image source={bg} style={styles.img}>
-        {this.props.children}
+          {this.props.children}
       </Image>
     );
   }

@@ -7,18 +7,24 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import Wall from '@src/components/Wall';
 import styles from './index.style';
+import Wall from '@src/components/Wall';
+import Tile from '@src/components/Tile';
 
 class Home extends Component {
   render() {
     return (
       <Wall>
         <View style={styles.section}>
-          <Text>mantap</Text>
+          <Tile />
+          <Text style={styles.title}>
+            Tap Alphabets
+          </Text>
         </View>
         <View style={styles.section}>
-          <Text>mantap</Text>
+          <Text style={styles.title}>
+            START
+          </Text>
         </View>
       </Wall>
     );
