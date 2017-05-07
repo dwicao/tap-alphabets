@@ -1,0 +1,1 @@
+export const CHANGE_BEST_SCORE = 'CHANGE_BEST_SCORE';
