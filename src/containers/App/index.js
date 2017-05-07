@@ -1,33 +1,32 @@
+// import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import * as mainAction from '@src/actions';
 import {
   View,
   Text,
   TouchableOpacity,
 } from 'react-native';
+import Home from '@src/containers/Home';
 
 class App extends Component {
   render() {
     return (
       <View>
-        <Text>Home</Text>
-        <Text>{JSON.stringify(this.props)}</Text>
-        <TouchableOpacity onPress={() => this.props.actions.changeBestScore(12)}>
-          <Text>Muantap</Text>
-        </TouchableOpacity>
+        <Home />
       </View>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  score: state.score,
-});
+export default App;
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(mainAction, dispatch),
-});
+// const mapStateToProps = state => ({
+//   score: state.score,
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// const mapDispatchToProps = dispatch => ({
+//   actions: bindActionCreators(mainAction, dispatch),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
