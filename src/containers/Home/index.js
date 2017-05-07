@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import { width } from 'react-native-dimension';
 import styles from './index.style';
 import Wall from '@src/components/Wall';
 import Tile from '@src/components/Tile';
@@ -16,15 +17,13 @@ class Home extends Component {
     return (
       <Wall>
         <View style={styles.section}>
-          <Tile />
+          <Tile text='A'/>
           <Text style={styles.title}>
             Tap Alphabets
           </Text>
         </View>
         <View style={styles.section}>
-          <Text style={styles.title}>
-            START
-          </Text>
+          <Tile text='START' width={width(50)}/>
         </View>
       </Wall>
     );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -51,21 +51,30 @@ class Tile extends Component {
       <TouchableOpacity
         onPress={this.handleClick}
         activeOpacity={1}
-        style={styles.size}
+        style={[styles.size, { width: this.props.width }]}
       >
-        <View style={[styles.size, styles.primary]}/>
+        <View style={[styles.size, styles.primary, { width: this.props.width }]}/>
         <Animated.View
           style={[
-            styles.size, styles.secondary, { top: animPress }
+            styles.size, styles.secondary, { width: this.props.width, top: animPress }
           ]}
         >
           <Text style={styles.alphabet}>
-            A
+            {this.props.text}
           </Text>
         </Animated.View>
       </TouchableOpacity>
     );
   }
 }
+
+Tile.defaultProps = {
+  width: width(25),
+};
+
+Tile.propTypes = {
+  width: PropTypes.number,
+  text: PropTypes.string.isRequired,
+};
 
 export default Tile;

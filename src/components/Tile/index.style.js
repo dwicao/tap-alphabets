@@ -4,7 +4,6 @@ import shadeColor from '@src/utils/colors';
 
 export default StyleSheet.create({
   size: {
-    width: width(25),
     height: width(25),
     borderRadius: width(2),
   },
