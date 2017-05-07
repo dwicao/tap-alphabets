@@ -29,6 +29,8 @@ class Tile extends Component {
     }, 100);
 
     this.setState({ isClicked: true });
+
+    this.props.onPress();
   }
 
   animationHelper(obj, toValue, duration) {
@@ -70,10 +72,12 @@ class Tile extends Component {
 
 Tile.defaultProps = {
   width: width(25),
+  onPress: () => {},
 };
 
 Tile.propTypes = {
   width: PropTypes.number,
+  onPress: PropTypes.func,
   text: PropTypes.string.isRequired,
 };
 
