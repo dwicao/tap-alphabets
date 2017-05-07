@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { width, totalSize } from 'react-native-dimension';
+import shadeColor from '@src/utils/colors';
 
 export default StyleSheet.create({
   size: {
@@ -9,12 +10,12 @@ export default StyleSheet.create({
   },
   primary: {
     top: width(2),
-    backgroundColor: 'black',
+    backgroundColor: shadeColor('#aaaaaa', -20),
   },
   secondary: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: shadeColor('#aaaaaa'),
   },
   alphabet: {
     color: 'white',
