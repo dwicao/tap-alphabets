@@ -7,28 +7,25 @@ import Wall from '@src/components/Wall';
 import Tile from '@src/components/Tile';
 import TileBlank from '@src/components/TileBlank';
 import styles from './index.style';
+import { getRandomAlphabet, getRandomTileColor } from '@src/utils/board';
 
 class Playground extends Component {
+  renderTiles() {
+    let element = [];
+
+    for ( let i = 0; i < 15; i++ ) {
+      element.push(<Tile key={i} color={getRandomTileColor()} text={getRandomAlphabet()} />);
+    }
+
+    return element;
+  }
+
   render() {
     return (
       <Wall>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Tile text="A"/>
-            <Tile text="A"/>
-            <TileBlank />
-            <Tile text="A"/>
-            <Tile text="A"/>
-            <Tile text="A"/>
-            <TileBlank />
-            <Tile text="A"/>
-            <Tile text="A"/>
-            <Tile text="A"/>
-            <TileBlank />
-            <Tile text="A"/>
-            <TileBlank />
-            <Tile text="A"/>
-            <Tile text="A"/>
+            {this.renderTiles()}
           </View>
         </View>
       </Wall>
