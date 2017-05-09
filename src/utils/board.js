@@ -1,6 +1,5 @@
 import colorTiles from '@src/config/colors';
-
-export const alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+import alphabets from '@src/config/char';
 
 export const getRandomInt = (min, max) => {
   return Math.floor( Math.random() * (max - min + 1) ) + min;
@@ -23,4 +22,15 @@ export const getRandomAlphabet = (blacklist = []) => {
   const result = possible.charAt(Math.floor(Math.random() * possible.length));
   
 	return blacklist.includes(result) ? getRandomAlphabet(blacklist) : result;
+}
+
+export const shuffleArray = (array) => {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    
+    return array;
 }
