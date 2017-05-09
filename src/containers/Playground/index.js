@@ -3,6 +3,7 @@ import {
   View,
   Text,
 } from 'react-native';
+import uuid from 'uuid';
 import Wall from '@src/components/Wall';
 import Tile from '@src/components/Tile';
 import TileBlank from '@src/components/TileBlank';
@@ -16,12 +17,12 @@ class Playground extends Component {
     let element = [];
     let newColorTiles = colorTiles.slice(0);
     let newAlphabets = alphabets.slice(0);
-    
+
     shuffleArray(newColorTiles);
     shuffleArray(newAlphabets);
 
     for ( let i = 0; i < 12; i++ ) {
-      element.push(<Tile key={i} color={newColorTiles.pop()} text={newAlphabets.pop()} />);
+      element.push(<Tile key={uuid.v4()} color={newColorTiles.pop()} text={newAlphabets.pop()} />);
     }
 
     return element;
