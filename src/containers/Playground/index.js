@@ -13,7 +13,7 @@ class Playground extends Component {
   renderTiles() {
     let element = [];
 
-    for ( let i = 0; i < 15; i++ ) {
+    for ( let i = 0; i < 12; i++ ) {
       element.push(<Tile key={i} color={getRandomTileColor()} text={getRandomAlphabet()} />);
     }
 
