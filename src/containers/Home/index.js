@@ -57,6 +57,7 @@ class Home extends Component {
             <Tile
               text={alphabet}
               color={tileColor}
+              fadeIn={false}
               onPress={this.pressTopTile}
             />
             <Text style={styles.title}>
@@ -65,6 +66,7 @@ class Home extends Component {
           </View>
           <Tile
             text='START'
+            fadeIn={false}
             width={width(50)}
             onPress={this.pressStart}
           />

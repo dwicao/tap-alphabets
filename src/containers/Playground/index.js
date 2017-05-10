@@ -23,7 +23,18 @@ class Playground extends Component {
     shuffleArray(newAlphabets);
 
     for ( let i = 0; i < tiles.max; i++ ) {
-      element.push(<Tile key={uuid.v4()} color={newColorTiles.pop()} text={newAlphabets.pop()} />);
+      const lastColorTiles = newColorTiles[newColorTiles.length - 1];
+      const lastAlphabet = newAlphabets[newAlphabets.length - 1];
+
+      element.push(
+        <Tile
+          key={uuid.v4()}
+          color={lastColorTiles}
+          text={lastAlphabet} />
+      );
+
+      newColorTiles.pop();
+      newAlphabets.pop();
     }
 
     return element.slice(0, getRandomInt(tiles.min, tiles.max));
