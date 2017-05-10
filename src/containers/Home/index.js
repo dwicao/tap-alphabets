@@ -67,7 +67,7 @@ class Home extends Component {
           <Tile
             text='START'
             fadeIn={false}
-            width={width(50)}
+            width={width(70)}
             onPress={this.pressStart}
           />
         </View>

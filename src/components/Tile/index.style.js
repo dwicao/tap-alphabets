@@ -8,6 +8,7 @@ export default StyleSheet.create({
     height: width(27),
   },
   size: {
+    top: -width(25),
     height: width(25),
     borderRadius: width(2),
   },

@@ -22,18 +22,18 @@ class Tile extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  createAnimation(obj, toValue, duration) {
-    Animated.spring(obj, { toValue, duration }).start();
+  createAnimation(obj, toValue, duration, useNativeDriver = false) {
+    Animated.spring(obj, { toValue, duration, useNativeDriver }).start();
   }
 
   handleClick() {
     const { fadeIn } = this.props;
 
-    this.createAnimation(this.animPress, 1, 50);
+    this.createAnimation(this.animPress, 1, 50, true);
     
     setTimeout(() => {
-      if (fadeIn) this.createAnimation(this.animOpacity, 1, 1000);
-      this.createAnimation(this.animPress, 0, 50);
+      if (fadeIn) this.createAnimation(this.animOpacity, 1, 500);
+      this.createAnimation(this.animPress, 0, 50, true);
       this.props.onPress();
     }, 100);
 
@@ -43,7 +43,7 @@ class Tile extends Component {
   render() {
     const animPress = this.animPress.interpolate({
       inputRange: [0, 1],
-      outputRange: [-width(25), -width(22.5)]
+      outputRange: [0, width(2.5)]
     });
 
     const animOpacity = this.animOpacity.interpolate({
@@ -64,7 +64,7 @@ class Tile extends Component {
           <Animated.View
             style={[
               styles.size, styles.secondary, {
-                top: animPress,
+                transform: [{ translateY: animPress }],
                 backgroundColor: shadeColor(this.props.color),
                 width: this.props.width,
           }]}>
