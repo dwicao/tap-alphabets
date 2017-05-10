@@ -22,24 +22,18 @@ class Tile extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  animationHelper(obj, toValue, duration) {
-    Animated.spring(
-        obj,
-        {
-          toValue,
-          duration,
-        }
-      ).start();
+  createAnimation(obj, toValue, duration) {
+    Animated.spring(obj, { toValue, duration }).start();
   }
 
   handleClick() {
     const { fadeIn } = this.props;
 
-    this.animationHelper(this.animPress, 1, 50);
+    this.createAnimation(this.animPress, 1, 50);
     
     setTimeout(() => {
-      if (fadeIn) this.animationHelper(this.animOpacity, 1, 1000);
-      this.animationHelper(this.animPress, 0, 50);
+      if (fadeIn) this.createAnimation(this.animOpacity, 1, 1000);
+      this.createAnimation(this.animPress, 0, 50);
       this.props.onPress();
     }, 100);
 

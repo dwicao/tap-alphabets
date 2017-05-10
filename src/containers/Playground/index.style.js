@@ -1,17 +1,10 @@
-import { StyleSheet } from 'react-native';
-import { width, height } from 'react-native-dimension';
+import { StyleSheet, Platform } from 'react-native';
+
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
 
 export default StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width(100),
-    height: height(100),
-  },
-  content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    paddingTop: STATUSBAR_HEIGHT,
+    backgroundColor: 'rgb(185, 217, 176)',
   },
 });
