@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Animated,
 } from 'react-native';
 import uuid from 'uuid';
 import Tile from '@src/components/Tile';
@@ -16,10 +17,35 @@ class Board extends Component {
   constructor() {
     super();
 
+    this.totalTiles = 0;
+    this.tilePressed = 0;
+
     this.state = {};
+
+    this.animOpacity = new Animated.Value(0);
+    this.renderTiles = this.renderTiles.bind(this);
+    this.onPressTile = this.onPressTile.bind(this);
+  }
+
+  startAnimation() {
+    Animated.timing(this.animOpacity, { toValue: 1, duration: 500 }).start();
+  }
+  
+  componentDidMount() {
+    this.startAnimation();
+  }
+
+  onPressTile() {
+    this.tilePressed++;
+    if (this.tilePressed === this.totalTiles){
+      this.tilePressed = 0;
+      this.animOpacity.setValue(0);
+      this.reRender();
+    }
   }
 
   reRender() {
+    this.startAnimation();
     this.setState(this.state);
   }
 
@@ -37,6 +63,7 @@ class Board extends Component {
 
       element.push(
         <Tile
+          onPress={this.onPressTile}
           key={uuid.v4()}
           color={lastColorTiles}
           text={lastAlphabet} />
@@ -46,16 +73,24 @@ class Board extends Component {
       newAlphabets.pop();
     }
 
-    return element.slice(0, getRandomInt(tiles.min, tiles.max));
+    const newElement = element.slice(0, getRandomInt(tiles.min, tiles.max));
+    this.totalTiles = newElement.length;
+
+    return newElement;
   }
 
   render() {
+    const animOpacity = this.animOpacity.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1]
+    });
+
     return (
-      <View style={styles.container}>
+      <Animated.View style={[styles.container, { opacity: animOpacity }]}>
         <View style={styles.content}>
           {this.renderTiles()}
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }
