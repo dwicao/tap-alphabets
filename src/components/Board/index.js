@@ -30,7 +30,7 @@ class Board extends Component {
   startAnimation() {
     Animated.timing(this.animOpacity, { toValue: 1, duration: 500 }).start();
   }
-  
+
   componentDidMount() {
     this.startAnimation();
   }
@@ -38,13 +38,13 @@ class Board extends Component {
   onPressTile() {
     this.tilePressed++;
     if (this.tilePressed === this.totalTiles){
-      this.tilePressed = 0;
       this.animOpacity.setValue(0);
       this.reRender();
     }
   }
 
   reRender() {
+    this.tilePressed = 0;
     this.startAnimation();
     this.setState(this.state);
   }
