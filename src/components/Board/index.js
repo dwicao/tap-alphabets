@@ -13,6 +13,16 @@ import alphabets from '@src/config/char';
 import tiles from '@src/config/tiles';
 
 class Board extends Component {
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
+  reRender() {
+    this.setState(this.state);
+  }
+
   renderTiles() {
     let element = [];
     let newColorTiles = colorTiles.slice(0);
