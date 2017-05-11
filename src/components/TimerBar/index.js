@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -17,6 +17,7 @@ class TimerBar extends Component {
 
   start() {
     this.createAnimation(this.animWidth, 1, timer.LIMIT);
+    setTimeout(() => this.props.onEnd(), timer.LIMIT);
   }
 
   reset() {
@@ -40,5 +41,13 @@ class TimerBar extends Component {
     );
   }
 }
+
+TimerBar.defaultProps = {
+  onEnd: () => {},
+};
+
+TimerBar.propTypes = {
+  onEnd: PropTypes.func,
+};
 
 export default TimerBar;

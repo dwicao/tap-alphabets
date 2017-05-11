@@ -11,11 +11,25 @@ import TimerBar from '@src/components/TimerBar';
 import ModalEndGame from '@src/components/ModalEndGame';
 
 class Playground extends Component {
+  constructor() {
+    super();
+
+    this.openModal = this.openModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.timer.start();
+  }
+
+  openModal() {
+    this.modal.open();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Wall>
-          <TimerBar ref={el => this.timer = el}/>
+          <TimerBar ref={el => this.timer = el} onEnd={this.openModal}/>
           <Board ref={el => this.board = el}/>
           <ModalEndGame ref={el => this.modal = el}/>
         </Wall>
