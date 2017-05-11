@@ -18,6 +18,8 @@ class ModalEndGame extends Component {
     };
 
     this.onPressPlay = this.onPressPlay.bind(this);
+    this.open = this.open.bind(this);
+    this.clode = this.close.bind(this);
   }
 
   open() {
@@ -35,7 +37,12 @@ class ModalEndGame extends Component {
 
   render() {
     return (
-      <Modal visible={this.state.visible} onRequestClose={()=>{}} transparent>
+      <Modal
+        animationType='fade'
+        visible={this.state.visible}
+        onRequestClose={()=>{}}
+        transparent
+      >
         <View style={styles.container}>
           <View style={styles.section}>
             <Text style={[styles.txt, styles.topHeader]}>
