@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -16,6 +16,8 @@ class ModalEndGame extends Component {
     this.state = {
       visible: false,
     };
+
+    this.onPressPlay = this.onPressPlay.bind(this);
   }
 
   open() {
@@ -23,7 +25,12 @@ class ModalEndGame extends Component {
   }
 
   close() {
-    this.setState({ visible: true });
+    this.setState({ visible: false });
+  }
+
+  onPressPlay() {
+    this.close();
+    this.props.onPressPlay();
   }
 
   render() {
@@ -49,7 +56,7 @@ class ModalEndGame extends Component {
               color={getRandomTileColor()}
               width={width(70)}
               fadeIn={false}
-              onPress={() => {}}
+              onPress={this.onPressPlay}
             />
           </View>
         </View>
@@ -57,5 +64,13 @@ class ModalEndGame extends Component {
     );
   }
 }
+
+ModalEndGame.defaultProps = {
+  onPressPlay: () => {},
+};
+
+ModalEndGame.propTypes = {
+  onPressPlay: PropTypes.func,
+};
 
 export default ModalEndGame;

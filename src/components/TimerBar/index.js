@@ -24,6 +24,11 @@ class TimerBar extends Component {
     this.animWidth.setValue(0);
   }
 
+  restart() {
+    this.reset();
+    this.start();
+  }
+
   createAnimation(obj, toValue, duration) {
     Animated.timing( obj, { toValue, duration, useNativeDriver: true }).start();
   }

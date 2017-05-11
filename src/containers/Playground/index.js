@@ -15,6 +15,7 @@ class Playground extends Component {
     super();
 
     this.openModal = this.openModal.bind(this);
+    this.restart = this.restart.bind(this);
   }
 
   componentDidMount() {
@@ -25,13 +26,19 @@ class Playground extends Component {
     this.modal.open();
   }
 
+  restart() {
+    this.modal.close();
+    this.timer.restart();
+    this.board.reRender();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Wall>
           <TimerBar ref={el => this.timer = el} onEnd={this.openModal}/>
           <Board ref={el => this.board = el}/>
-          <ModalEndGame ref={el => this.modal = el}/>
+          <ModalEndGame ref={el => this.modal = el} onPressPlay={this.restart}/>
         </Wall>
       </View>
     );
