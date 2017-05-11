@@ -28,7 +28,7 @@ class ModalEndGame extends Component {
 
   render() {
     return (
-      <Modal visible={this.state.visible} transparent>
+      <Modal visible={this.state.visible} onRequestClose={()=>{}} transparent>
         <View style={styles.container}>
           <View style={styles.section}>
             <Text style={[styles.txt, styles.topHeader]}>

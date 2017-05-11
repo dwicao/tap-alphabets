@@ -15,8 +15,7 @@ class Playground extends Component {
     return (
       <View style={styles.container}>
         <Wall>
-          <TimerBar />
-          <TouchableOpacity onPress={() => this.modal.open()} style={{ width: 50, height: 50, backgroundColor: 'gray' }}/>
+          <TimerBar ref={el => this.timer = el}/>
           <Board ref={el => this.board = el}/>
           <ModalEndGame ref={el => this.modal = el}/>
         </Wall>
