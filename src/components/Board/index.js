@@ -28,7 +28,7 @@ class Board extends Component {
   }
 
   startAnimation() {
-    Animated.timing(this.animOpacity, { toValue: 1, duration: 500 }).start();
+    Animated.timing(this.animOpacity, { toValue: 1, duration: 500, useNativeDriver: true }).start();
   }
 
   componentDidMount() {
