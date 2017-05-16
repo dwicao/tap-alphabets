@@ -19,7 +19,7 @@ class Board extends Component {
 
     this.totalTiles = 0;
     this.tilePressed = 0;
-    this.smallestIndexAlphabet = [];
+    this.alphabetOnBoard = [];
 
     this.state = {};
 
@@ -36,9 +36,17 @@ class Board extends Component {
     this.startAnimation();
   }
 
-  onPressTile() {
-    alert(alphabets[this.smallestIndexAlphabet]);
-    this.tilePressed++;
+  onPressTile(id) {
+    const lastAlphabet = this.alphabetOnBoard[this.alphabetOnBoard.length - 1];
+    const indexAlphabetPressed = alphabets.join('').indexOf(id);
+    
+    if (indexAlphabetPressed === lastAlphabet) {
+      this.tilePressed++;
+      this.alphabetOnBoard.pop();
+    } else {
+      alert ('Wrong!')
+    }
+
     if (this.tilePressed === this.totalTiles){
       this.animOpacity.setValue(0);
       this.reRender();
@@ -62,7 +70,7 @@ class Board extends Component {
 
       element.push(
         <Tile
-          onPress={this.onPressTile}
+          onPress={() => this.onPressTile(lastAlphabet)}
           key={uuid.v4()}
           color={lastColorTiles}
           text={lastAlphabet} />
@@ -74,9 +82,10 @@ class Board extends Component {
 
     const newElement = element.slice(0, getRandomInt(tiles.min, tiles.max));
     this.totalTiles = newElement.length;
-    this.smallestIndexAlphabet = newElement.map(
+    this.alphabetOnBoard = newElement.map(
         el => alphabets.join('').indexOf(el.props.text)
-      ).reduce((a, b) => Math.min(a, b));
+      ).sort((a, b) => b - a);
+
 
     return newElement;
   }
