@@ -18,7 +18,7 @@ export const getAlphabet = (index) => {
 }
 
 export const getRandomAlphabet = (blacklist = []) => {
-	const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	const possible = alphabets.join('');
   const result = possible.charAt(Math.floor(Math.random() * possible.length));
   
 	return blacklist.includes(result) ? getRandomAlphabet(blacklist) : result;

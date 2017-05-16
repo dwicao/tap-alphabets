@@ -19,6 +19,7 @@ class Board extends Component {
 
     this.totalTiles = 0;
     this.tilePressed = 0;
+    this.smallestIndexAlphabet = [];
 
     this.state = {};
 
@@ -36,6 +37,7 @@ class Board extends Component {
   }
 
   onPressTile() {
+    alert(alphabets[this.smallestIndexAlphabet]);
     this.tilePressed++;
     if (this.tilePressed === this.totalTiles){
       this.animOpacity.setValue(0);
@@ -51,13 +53,10 @@ class Board extends Component {
 
   renderTiles() {
     let element = [];
-    let newColorTiles = colorTiles.slice(0);
-    let newAlphabets = alphabets.slice(0);
+    let newColorTiles = shuffleArray(colorTiles.slice(0));
+    let newAlphabets = shuffleArray(alphabets.slice(0));
 
-    shuffleArray(newColorTiles);
-    shuffleArray(newAlphabets);
-
-    for ( let i = 0; i < tiles.max; i++ ) {
+    for (let i = 0; i < newAlphabets.length; i++) {
       const lastColorTiles = newColorTiles[newColorTiles.length - 1];
       const lastAlphabet = newAlphabets[newAlphabets.length - 1];
 
@@ -75,6 +74,9 @@ class Board extends Component {
 
     const newElement = element.slice(0, getRandomInt(tiles.min, tiles.max));
     this.totalTiles = newElement.length;
+    this.smallestIndexAlphabet = newElement.map(
+        el => alphabets.join('').indexOf(el.props.text)
+      ).reduce((a, b) => Math.min(a, b));
 
     return newElement;
   }
