@@ -58,7 +58,8 @@ class Home extends Component {
               text={alphabet}
               color={tileColor}
               fadeIn={false}
-              onPress={this.pressTopTile}
+              toBlank={false}
+              onAfterAnimation={this.pressTopTile}
             />
             <Text style={styles.title}>
               Tap Alphabets
@@ -68,8 +69,9 @@ class Home extends Component {
             text='START'
             color={tileColor}
             fadeIn={false}
+            toBlank={false}
             width={width(70)}
-            onPress={this.pressStart}
+            onAfterAnimation={this.pressStart}
           />
         </View>
       </Wall>

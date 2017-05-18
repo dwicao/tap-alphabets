@@ -44,7 +44,7 @@ class Board extends Component {
       this.tilePressed++;
       this.alphabetOnBoard.pop();
     } else {
-      alert ('Wrong!')
+      // alert ('Wrong!')
     }
 
     if (this.tilePressed === this.totalTiles){
@@ -70,7 +70,7 @@ class Board extends Component {
 
       element.push(
         <Tile
-          onPress={() => this.onPressTile(lastAlphabet)}
+          onAfterAnimation={() => this.onPressTile(lastAlphabet)}
           key={uuid.v4()}
           color={lastColorTiles}
           text={lastAlphabet} />

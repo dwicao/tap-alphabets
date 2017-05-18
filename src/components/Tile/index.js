@@ -31,14 +31,20 @@ class Tile extends Component {
   handleClick() {
     const { fadeIn } = this.props;
 
-    this.createAnimation(this.animPress, 1, 50, true);
+    this.createAnimation(this.animPress, 1, 100, true);
     
     setTimeout(() => {
-      if (fadeIn) this.createAnimation(this.animOpacity, 1, 500);
-      this.createAnimation(this.animPress, 0, 50, true);
-      this.setState({ isBlank: true });
-      this.props.onPress();
+      if (fadeIn) this.createAnimation(this.animOpacity, 1, 100);
+      this.createAnimation(this.animPress, 0, 100, true);
     }, 100);
+
+    setTimeout(() => {
+      if (this.props.toBlank) {
+        this.setState({ isBlank: true })
+      }
+
+      this.props.onAfterAnimation();
+    }, 200);
 
     this.setState({ isClicked: true });
   }
@@ -85,16 +91,18 @@ class Tile extends Component {
 
 Tile.defaultProps = {
   width: width(25),
-  onPress: () => {},
+  onAfterAnimation: () => {},
   color: '#aaaaaa',
   fadeIn: true,
+  toBlank: true,
 };
 
 Tile.propTypes = {
   width: PropTypes.number,
-  onPress: PropTypes.func,
+  onAfterAnimation: PropTypes.func,
   color: PropTypes.string,
   fadeIn: PropTypes.bool,
+  toBlank: PropTypes.bool,
   text: PropTypes.string.isRequired,
 };
 

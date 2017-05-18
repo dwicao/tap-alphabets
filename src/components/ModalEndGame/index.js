@@ -63,7 +63,8 @@ class ModalEndGame extends Component {
               color={getRandomTileColor()}
               width={width(70)}
               fadeIn={false}
-              onPress={this.onPressPlay}
+              toBlank={false}
+              onAfterAnimation={this.onPressPlay}
             />
           </View>
         </View>
