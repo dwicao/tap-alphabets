@@ -8,6 +8,7 @@ import {
 import styles from './index.style';
 import shadeColor from '@src/utils/colors';
 import { width } from 'react-native-dimension';
+import TileBlank from '../TileBlank';
 
 class Tile extends Component {
   constructor() {
@@ -15,6 +16,7 @@ class Tile extends Component {
 
     this.state = {
       isClicked: false,
+      isBlank: false,
     }
 
     this.animPress = new Animated.Value(0);
@@ -34,6 +36,7 @@ class Tile extends Component {
     setTimeout(() => {
       if (fadeIn) this.createAnimation(this.animOpacity, 1, 500);
       this.createAnimation(this.animPress, 0, 50, true);
+      this.setState({ isBlank: true });
       this.props.onPress();
     }, 100);
 
@@ -50,6 +53,8 @@ class Tile extends Component {
       inputRange: [0, 1],
       outputRange: [1, 0]
     });
+
+    if (this.state.isBlank) return <TileBlank />;
 
     return (
       <Animated.View style={{ opacity: animOpacity }}>
