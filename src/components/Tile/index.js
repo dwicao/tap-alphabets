@@ -24,26 +24,23 @@ class Tile extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  createAnimation(obj, toValue, duration, useNativeDriver = false) {
+  createAnimation(obj, toValue, duration, useNativeDriver = true) {
     Animated.spring(obj, { toValue, duration, useNativeDriver }).start();
   }
 
   handleClick() {
-    const { fadeIn } = this.props;
+    const { fadeIn, toBlank, onAfterAnimation } = this.props;
 
-    this.createAnimation(this.animPress, 1, 100, true);
+    this.createAnimation(this.animPress, 1, 100);
     
     setTimeout(() => {
       if (fadeIn) this.createAnimation(this.animOpacity, 1, 100);
-      this.createAnimation(this.animPress, 0, 100, true);
+      this.createAnimation(this.animPress, 0, 100);
     }, 100);
 
     setTimeout(() => {
-      if (this.props.toBlank) {
-        this.setState({ isBlank: true })
-      }
-
-      this.props.onAfterAnimation();
+      if (toBlank) this.setState({ isBlank: true });
+      onAfterAnimation();
     }, 200);
 
     this.setState({ isClicked: true });
